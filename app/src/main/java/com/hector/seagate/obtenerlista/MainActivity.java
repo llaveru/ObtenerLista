@@ -34,6 +34,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     Tarea tarea;
@@ -46,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
+
 
         lista = (ListView) findViewById(R.id.vistaLista);
         //conectarse asyncronamente a la url
@@ -83,7 +89,7 @@ class Tarea extends AsyncTask<URL,Void,String>{
     public Tarea(MainActivity mainActivity) {
     this.actividadUI= mainActivity;
     }
-
+    ArrayList<Vehiculo> vehiculos_data;
     @Override
 
     protected String doInBackground(URL... params) {
@@ -178,16 +184,54 @@ class Tarea extends AsyncTask<URL,Void,String>{
         super.onPostExecute(s);
         try {
             arrayJSON = new JSONArray(s);
-            vehiculos = new ArrayList<String>();
+
+
+
+
+            ////
+             //vehiculos_data = new Vehiculo[]
+                 //   {
+               //             new Vehiculo(R.drawable.busamarillo, "Linea sama-tuilla"),
+                   //         new Vehiculo(R.drawable.busazul, "Linea laviana-villa"),
+                     ////     new Vehiculo(R.drawable.busnegro, "La Felguera - Mieres")
+                    //};
+
+
+
+
+
+
+            ////
+
+            vehiculos_data = new ArrayList<>();
 
             for (int i=0;i<arrayJSON.length();i++){
                 linea =arrayJSON.getJSONObject(i);
-                Log.d("RESULTADO","Se recogio correctamente id_vehiculo: "+linea.get("id_vehiculo"));
-                vehiculos.add(linea.getString("id_vehiculo"));
+                Log.d("RESULTADO", "Se recogio correctamente id_vehiculo: " + linea.get("id_vehiculo"));
+            //    vehiculos.add(linea.getString("id_vehiculo"));
+                Random genAlea = new Random();
+                switch (genAlea.nextInt(4)){
+                    case 1:
+                        vehiculos_data.add(new Vehiculo(R.drawable.busnegro,linea.getString("id_vehiculo")));
+                        break;
+                    case 2:
+                        vehiculos_data.add(new Vehiculo(R.drawable.busblanco,linea.getString("id_vehiculo")));
+                        break;
+                    case 3:
+                        vehiculos_data.add(new Vehiculo(R.drawable.busazul,linea.getString("id_vehiculo")));
+                        break;
+                    default:
+                        vehiculos_data.add(new Vehiculo(R.drawable.busamarillo,linea.getString("id_vehiculo")));
+                        break;
+
+                }
+
+
+
 
             }
 
-            Log.d("RESULTADO","Se recogio correctamente el JSON, AHORA A CARGAR LA LISTVIEW");
+            Log.d("RESULTADO", "Se recogio correctamente el JSON, AHORA A CARGAR LA LISTVIEW");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -198,8 +242,11 @@ class Tarea extends AsyncTask<URL,Void,String>{
         que se realizó al arreglo JSON
          */
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.actividadUI.getBaseContext(),android.R.layout.simple_list_item_1,vehiculos);
 
+
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.actividadUI.getBaseContext(),android.R.layout.simple_list_item_1,vehiculos);
+
+        AdaptadorVehiculo adapter = new AdaptadorVehiculo(actividadUI,R.layout.listview_item_row, vehiculos_data);
         // Relacionar adaptador a la lista
         lista.setAdapter(adapter);
 

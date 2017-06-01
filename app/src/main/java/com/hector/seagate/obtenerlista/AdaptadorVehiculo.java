@@ -18,7 +18,7 @@ public class AdaptadorVehiculo extends ArrayAdapter<Vehiculo> {
 
     Context context;
     int layoutResourceId;
-    Vehiculo data[] = null;
+    ArrayList<Vehiculo> data = null;
 
     public AdaptadorVehiculo(Context context, int layoutResourceId, ArrayList<Vehiculo> data) {
         super(context, layoutResourceId, data);
@@ -48,7 +48,7 @@ public class AdaptadorVehiculo extends ArrayAdapter<Vehiculo> {
             holder = (VehiculoHolder)row.getTag();
         }
 
-        Vehiculo vehiculo = data[position];
+        Vehiculo vehiculo = data.get(position);
         holder.txtTitle.setText(vehiculo.title);
         holder.imgIcon.setImageResource(vehiculo.icon);
 

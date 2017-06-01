@@ -3,6 +3,9 @@ package com.hector.seagate.obtenerlista;
 tutorial buenisimo que me inspiró:
 http://www.hermosaprogramacion.com/2015/01/android-httpurlconnection/
  */
+
+
+//hay que guardar estado, pork al girar pantalla se cambian los iconos de los autobuses
 import android.app.Activity;
 import android.content.Context;
 import android.location.LocationManager;
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 class Tarea extends AsyncTask<URL,Void,String>{
     HttpURLConnection con;
     String data="";
-    String idGestor="2";
+    String idGestor="1";
     Activity actividadUI;
     ArrayList<String> vehiculos=null;
     JSONArray arrayJSON;

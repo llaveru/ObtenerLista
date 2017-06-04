@@ -8,15 +8,17 @@ public class Vehiculo {
 
     public int icon;
     public String title;
+    public String tipo;
 
     public Vehiculo(){
         super();
     }
 
-    public Vehiculo(int icon, String title) {
+    public Vehiculo(int icon, String title,String tipo) {
         super();
         this.icon = icon;
         this.title = title;
+        this.tipo= tipo;
     }
 
 

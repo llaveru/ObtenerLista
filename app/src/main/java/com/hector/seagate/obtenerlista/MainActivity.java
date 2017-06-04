@@ -216,16 +216,16 @@ class Tarea extends AsyncTask<URL,Void,String>{
                 Random genAlea = new Random();
                 switch (genAlea.nextInt(4)){
                     case 1:
-                        vehiculos_data.add(new Vehiculo(R.drawable.busnegro,linea.getString("nombre_linea")));
+                        vehiculos_data.add(new Vehiculo(R.drawable.busnegro,linea.getString("nombre_linea"),linea.getString("tipo")));
                         break;
                     case 2:
-                        vehiculos_data.add(new Vehiculo(R.drawable.busblanco,linea.getString("nombre_linea")));
+                        vehiculos_data.add(new Vehiculo(R.drawable.busblanco,linea.getString("nombre_linea"),linea.getString("tipo")));
                         break;
                     case 3:
-                        vehiculos_data.add(new Vehiculo(R.drawable.busazul,linea.getString("nombre_linea")));
+                        vehiculos_data.add(new Vehiculo(R.drawable.busazul,linea.getString("nombre_linea"),linea.getString("tipo")));
                         break;
                     default:
-                        vehiculos_data.add(new Vehiculo(R.drawable.busamarillo,linea.getString("nombre_linea")));
+                        vehiculos_data.add(new Vehiculo(R.drawable.busamarillo,linea.getString("nombre_linea"),linea.getString("tipo")));
                         break;
 
                 }

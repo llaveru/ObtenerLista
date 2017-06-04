@@ -8,6 +8,7 @@ http://www.hermosaprogramacion.com/2015/01/android-httpurlconnection/
 //hay que guardar estado, pork al girar pantalla se cambian los iconos de los autobuses
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -215,16 +216,16 @@ class Tarea extends AsyncTask<URL,Void,String>{
                 Random genAlea = new Random();
                 switch (genAlea.nextInt(4)){
                     case 1:
-                        vehiculos_data.add(new Vehiculo(R.drawable.busnegro,linea.getString("id_vehiculo")));
+                        vehiculos_data.add(new Vehiculo(R.drawable.busnegro,linea.getString("nombre_linea")));
                         break;
                     case 2:
-                        vehiculos_data.add(new Vehiculo(R.drawable.busblanco,linea.getString("id_vehiculo")));
+                        vehiculos_data.add(new Vehiculo(R.drawable.busblanco,linea.getString("nombre_linea")));
                         break;
                     case 3:
-                        vehiculos_data.add(new Vehiculo(R.drawable.busazul,linea.getString("id_vehiculo")));
+                        vehiculos_data.add(new Vehiculo(R.drawable.busazul,linea.getString("nombre_linea")));
                         break;
                     default:
-                        vehiculos_data.add(new Vehiculo(R.drawable.busamarillo,linea.getString("id_vehiculo")));
+                        vehiculos_data.add(new Vehiculo(R.drawable.busamarillo,linea.getString("nombre_linea")));
                         break;
 
                 }
